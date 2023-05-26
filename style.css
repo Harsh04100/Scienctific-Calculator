@@ -1,0 +1,45 @@
+.hg{
+    height: 70v;
+    border: 2px solid #06283D;
+    border-radius: 9px;
+    background-color: #06283D;
+}
+.color{
+    color: antiquewhite;
+}
+.input-1{
+    max-width: 25vw ;
+    text-align: center;
+}
+.align-item{
+    align-items: center;
+}
+.mw-auto{
+     margin: auto;
+     align-items: center;
+}
+.btn{
+    padding: 50 px;
+}
+.pad{
+    padding: 10px 20px;
+}
+.pad1{
+    padding: 10px 26px;
+}
+.pad2{
+    padding: 10px 25px;
+}
+
+.pad3{
+    padding: 10px 22px;
+}
+.pad4{
+    padding: 10px 24px;
+}
+.pad5{
+    padding: 10px 28px;
+}
+.red{
+    background-color: red;
+}

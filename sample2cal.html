@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scinetific Calculator</title>
+    <!-- mera stylesheet -->
+    <link rel="stylesheet" href="util.css">
+    <link rel="stylesheet" href="style2.css">
+    
+    <!-- font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Silkscreen&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <header class="nava">
+        <nav class="nab">
+          <div class="nas non">
+           <p1><a class="text1" href="index.html"> SciCalci </a></p1>
+          </div>
+          <div class="nas">
+            <ul>
+              <li class="init"><a  class="text" href=""><strong>Calculators</strong></a></li>
+              <li class="init"><a  class="text" href=""><strong>Other</strong></a></li>
+              <li class="init"><a  class="text" href=""><strong>About</strong></a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <main class="">
+        <div class="container">
+            <div class="display">
+                <input id="screen" type="text" placeholder="0">
+            </div>
+          
+          <div class="btns">
+             <div class="row">
+                 <button  class='trig' onclick="sin()">sin</button>
+                 <button  class='trig' onclick="cos()">cos</button>
+                 <button  class='trig' onclick="tan()">tan</button>
+                 <input class="form-check-input calc" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                   <label class="form-check-label calc" for="flexRadioDefault1">Deg</label>
+                 </input>          
+                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">Rad</label>
+                </input>
+             </div>
+             <div class="row">
+                 <button onclick="asin()">sin<sup>-1</sup></button>
+                 <button onclick="acos()">cos<sup>-1</sup></button>
+                 <button onclick="atan()">tan<sup>-1</sup></button>
+                 <button onclick="pi()">π</button>
+                 <button onclick="e()">e</button>
+             </div>
+             <div class="row">
+                 <button onclick="pow1()">X<sup>3</sup></button>
+                 <button onclick="pow2()">X<sup>2</sup></button>
+                 <button onclick="pow3()">e<sup>x</sup></button>
+                 <button onclick="pow4()">10<sup>x</sup></button> 
+                 <button onclick="fact()">n!</button>
+             </div> 
+             <div class="row">
+                 <button onclick="sqrt1()"><sup>3</sup>&#8730;x</button>
+                 <button onclick="sqrt()">&#8730;x</button>
+                 <button onclick="ln()">ln</button>
+                 <button onclick="log()">log</button>
+                 <button class="" onclick="screen.value = (Math.floor(Math.random()*100) + 1)">RND</button>
+             </div> 
+             <div class="row">
+                 <button class="btna btn">(</button>
+                 <button class="btna btn">)</button>
+                 <button class="btn" onclick="reciprocal()">1/X</button>
+                 <button id="percen" class="btn btna" onclick="percent()">%</button>
+                 <button onclick="backspc()">Back</button>
+             </div> 
+             <div class="row">
+                 <button class="btn btna">7</button>
+                 <button class="btn btna">8</button>
+                 <button class="btn btna">9</button>
+                 <button class="btn btna">+</button>
+                 <button  id="eval" onclick="screen.value=eval(screen.value)">=</button>
+             </div> 
+             <div class="row">
+                 <button class="btn  btna">4</button>
+                 <button class="btn btna">5</button>
+                 <button class="btn btna">6</button>
+                 <button class="btn btna">-</button>
+                 <button id = "eval" onclick="screen.value=''">AC</button>
+             </div> 
+             <div class="row">
+                 <button class="btn btna">1</button>
+                 <button class="btn btna">2</button>
+                 <button class="btn btna">3</button>
+                 <button class="btn btna">x</button>
+             </div>
+             <div class="row">
+                 <button class="btn btna">0</button>
+                 <button class="btn btna">.</button>
+                 <button class="btn btna">EXP</button>
+                 <button class="btn btna">÷</button>
+                 <button  id="eval" onclick="screen.value=eval(screen.value)">Ans</button>
+             </div> 
+          </div>
+       </div>
+      </main>
+    <footer class="lower">
+        <div>
+          <ul class="d-flex justify-content-center">
+            <li class="init"><a  class="text" href="">Instagram</a></li>
+            <li class="init"><a  class="text" href="">Twitter</a></li>
+            <li class="init"><a  class="text" href="">Gmail</a></li>
+          </ul>
+        </div>
+            <div class="d-flex justify-content-center"><button class="btn btn-outline-primary">Contant Us</button></div>
+      </footer>
+      <script>
+        var screen=document.querySelector('#screen');
+        var btn=document.querySelectorAll('.btna');
+       
+        
+        for(item of btn)
+        {
+          item.addEventListener('click',(e)=>{
+              btntext=e.target.innerText;
+      
+              if(btntext =='x')
+              {
+                btntext= '*';
+              }
+      
+              if(btntext=='÷')
+              {
+                btntext='/';
+              }
+      
+              if(btntext=='EXP')
+              {
+                btntext='**';
+              }
+              // if(btntext == '%'){
+              //   btntext='/';
+              // } 
+              if(btntext == '='){
+                  screen.value = eval(screen);
+              }
+              else{
+              screen.value+=btntext;
+              }
+          });
+        }
+        
+        function sin()
+        {
+          screen.value=Math.sin(screen.value/(180/3.14159265359));
+        }
+        
+        function cos()
+        {
+          screen.value=Math.cos(screen.value/(180/3.14159265359));
+        }
+        
+        function tan()
+        {
+          screen.value=Math.tan(screen.value/(180/3.14159265359));
+        }
+        
+        function asin()
+        {
+          screen.value=Math.ceil((Math.asin(screen.value))/(3.14159265359/180));
+        }
+        
+        function acos()
+        {
+          screen.value=Math.ceil((Math.acos(screen.value))/(3.14159265359/180));
+        }
+        
+        function atan()
+        {
+          screen.value=Math.ceil((Math.atan(screen.value))/(3.14159265359/180));
+        }
+        
+        function pow()
+        {
+          screen.value=Math.pow(screen.value,2);
+        }
+        function pow1()
+        {
+          screen.value=Math.pow(screen.value,3);
+        }
+        function pow2()
+        {
+          screen.value=Math.pow(screen.value,2);
+        }
+        function pow3()
+        {
+          screen.value=Math.pow(2.7, screen.value);
+        }
+        function pow4()
+        {
+          screen.value=Math.pow(10, screen.value);
+        }
+        
+        function sqrt()
+        {
+          screen.value=Math.sqrt(screen.value,2);
+        }
+        function sqrt1()
+        {
+          screen.value=Math.cbrt(screen.value,3);
+        }
+        
+        function log()
+        {
+          screen.value=Math.log(screen.value);
+        }
+        function ln()
+        {
+          screen.value=(Math.log(screen.value)/Math.log(10));
+        }
+        
+        function pi()
+        {
+          screen.value= 3.14159265359;
+        }
+        function e()
+        {
+          screen.value=2.71828182846;
+        }
+        
+        function fact()
+        {
+          var i, num, f;
+          f=1
+          num=screen.value;
+          for(i=1; i<=num; i++)
+          {
+            f=f*i;
+          }
+        
+          i=i-1;
+        
+          screen.value=f;
+        }
+        
+        function backspc()
+        {
+          screen.value=screen.value.substr(0,screen.value.length-1);
+        }
+        function reciprocal(){
+            screen.value = (1/screen.value);
+        }
+
+        function percent() {
+          screen.value = (screen.value * 100);
+        }
+      </script>
+</html>

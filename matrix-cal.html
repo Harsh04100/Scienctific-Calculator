@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Calculator</title>
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">  -->
+     <!-- js sheet -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> -->
+    
+    <!-- mera stylesheet -->
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="util.css">
+    
+    <!-- mera js sheet -->
+    <!-- <script src="matrix-cal.js"></script> -->
+    
+    <!-- font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Silkscreen&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <header class="nava">
+        <nav class="nab">
+          <div class="nas non">
+           <p1><a class="text1" href="index.html"> SciCalci </a></p1>
+          </div>
+          <div class="nas">
+            <ul>
+              <li class="init"><a  class="text" href=""><strong>Calculators</strong></a></li>
+              <li class="init"><a  class="text" href=""><strong>Other</strong></a></li>
+              <li class="init"><a  class="text" href=""><strong>About</strong></a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <section class="d-flex" id="banner">
+    <div id="upper">
+        <div id="matrix1" class="parent">
+            <h1 class="title">Matrix A</h1>
+            <input type="number" class="m1r1" value="0"/>
+            <input type="number" class="m1r1" value="0"/>
+            <input type="number" class="m1r1" value="0"/>
+            <input type="number" class="m1r2" value="0"/>
+            <input type="number" class="m1r2" value="0"/>
+            <input type="number" class="m1r2" value="0"/>
+            <input type="number" class="m1r3" value="0"/>
+            <input type="number" class="m1r3" value="0"/>
+            <input type="number" class="m1r3" value="0"/>
+            <div class="functions">
+                <input type="btn" class="function" value="Determinant(A)" onclick="mc.calDeterminantA()"/>
+                <input type="btn" class="function" value="Transpose(A)" onclick="mc.transposeMatrixA()"/>
+                <input type="btn" class="function" value="Rank(A)" onclick="mc.calRankA()"/>
+            </div>
+        </div>
+        <div id="operations">
+            <input class="operation" type="button" value="A + B" onclick="mc.addMatrix()"/>
+            <input class="operation" type="button" value="A - B" onclick="mc.subtractMatrix()"/>
+            <input class="operation" type="button" value="A &times B" onclick="mc.multiplyMatrix()"/>
+            <input type="button" class="operation" value="Clear" onclick="mc.clear()"/>
+        </div>
+        <div id="matrix2" class="parent">
+             <h1 class="title">Matrix B</h1>
+             <input type="number" class="m2r1" value="0"/>
+             <input type="number" class="m2r1" value="0"/>
+             <input type="number" class="m2r1" value="0"/>
+             <input type="number" class="m2r2" value="0"/>
+             <input type="number" class="m2r2" value="0"/>
+             <input type="number" class="m2r2" value="0"/>
+             <input type="number" class="m2r3" value="0"/>
+             <input type="number" class="m2r3" value="0"/>
+             <input type="number" class="m2r3" value="0"/>
+             <div class="functions">
+                <input type="btn" class="function" value="Determinant(B)" onclick="mc.calDeterminantB()"/>
+                <input type="btn" class="function" value="Transpose(B)" onclick="mc.transposeMatrixB()"/>
+                <input type="btn" class="function" value="Rank(B)" onclick="mc.calRankB()"/>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="lower">
+        <textarea wrap="soft" id="console" cols="20" rows="10" disabled>Result:</textarea>
+    </div>
+    <div class="reference-box">
+      <a class="color" href="MatrixReference1[1].pdf">Matrix Reference --></a>
+    </div>
+</section>
+<footer class="lower"> 
+    <div>
+      <ul class="d-flex justify-content-center">
+        <li class="init"><a  class="text" href="">Instagram</a></li>
+        <li class="init"><a  class="text" href="">Twitter</a></li>
+        <li class="init"><a  class="text" href="">Gmail</a></li>
+      </ul>
+    </div>
+        <div class="d-flex justify-content-center"><button class="btn btn-outline-primary position">Contant Us</button></div>
+  </footer>
+  <script>
+    class MatrixCalculator {
+	constructor() {
+		this.matrixA = [];
+		this.matrixB = [];
+		for(var i=0; i<3; i++) {
+			this.matrixA[i] = [];
+			this.matrixB[i] = [];
+		}
+		
+		this.AxDimension = 3;
+		this.AyDimension = 3;
+		this.BxDimension = 3;
+		this.ByDimension = 3;
+	}
+	calculateDimensions() {
+		this.AxDimension = 3;
+		this.AyDimension = 3;
+		
+		var count = 2;
+		while (count>=0 && this.matrixA[0][count]==0 && this.matrixA[1][count]==0 && this.matrixA[2][count]==0) {
+			this.AxDimension--;
+			count--;
+		}
+		count = 2;
+		while (count>=0 && this.matrixA[count][0]==0 && this.matrixA[count][1]==0 && this.matrixA[count][2]==0) {
+			this.AyDimension--;
+			count--;
+		}
+		this.BxDimension = 3;
+		this.ByDimension = 3;
+		
+		var count = 2;
+		while (count>=0 && this.matrixB[0][count]==0 && this.matrixB[1][count]==0 && this.matrixB[2][count]==0) {
+			this.BxDimension--;
+			count--;
+		}
+		count = 2;
+		while (count>=0 && this.matrixB[count][0]==0 && this.matrixB[count][1]==0 && this.matrixB[count][2]==0) {
+			this.ByDimension--;
+			count--;
+		}		
+	}
+    rebuildMatrix() {
+		var row1 = document.getElementsByClassName("m1r1");
+		var row2 = document.getElementsByClassName("m1r2");
+		var row3 = document.getElementsByClassName("m1r3");
+		for (var i=0; i<3; i++) {
+			this.matrixA[0][i] = row1[i].value;
+			this.matrixA[1][i] = row2[i].value;
+			this.matrixA[2][i] = row3[i].value;
+		}
+		row1 = document.getElementsByClassName("m2r1");
+		row2 = document.getElementsByClassName("m2r2");
+		row3 = document.getElementsByClassName("m2r3");
+		for (var i=0; i<3; i++) {
+			this.matrixB[0][i] = row1[i].value;
+			this.matrixB[1][i] = row2[i].value;
+			this.matrixB[2][i] = row3[i].value;
+		}
+		this.calculateDimensions();
+	}
+    calDeterminantA() {
+		this.rebuildMatrix();
+		if (this.AxDimension!=this.AyDimension) {
+			this.determinantA=null;
+			this.printOnConsole("Non-square matrix, determinant cannot be calculated.");
+			return;
+		}
+		var determinant;
+		if (this.AxDimension==1) {
+			determinant = this.matrixA[0][0];
+		}
+		if (this.AxDimension==2) {
+			determinant = (this.matrixA[0][0]*this.matrixA[1][1])-(this.matrixA[0][1]*this.matrixA[1][0]);
+		}
+		if (this.AxDimension==3) {
+			var op1, op2, op3, r1, r2, r3;
+			op1 = this.matrixA[0][0]*this.matrixA[1][1]*this.matrixA[2][2];
+			op2 = this.matrixA[0][1]*this.matrixA[1][2]*this.matrixA[2][0];
+			op3 = this.matrixA[0][2]*this.matrixA[1][0]*this.matrixA[2][1];
+			r1 = this.matrixA[0][2]*this.matrixA[1][1]*this.matrixA[2][0];
+			r2 = this.matrixA[0][0]*this.matrixA[1][2]*this.matrixA[2][1];
+			r3 = this.matrixA[0][1]*this.matrixA[1][0]*this.matrixA[2][2];
+			determinant = Math.round((op1+op2+op3-r1-r2-r3)*100)/100;
+		}
+		this.determinantA = determinant;
+		let det;
+		if(localStorage.getItem('Determinant(A)')===null){
+			det=[];
+		}else{
+			det=JSON.parse(localStorage.getItem('Determinant(A)'));
+		}
+		det.push(determinant);
+		localStorage.setItem('Determinant(A)',JSON.stringify(det));
+
+		this.printOnConsole("Determinant of matrix A: "+determinant)
+		return;
+	}
+
+    transposeMatrixA() {
+		this.rebuildMatrix();
+		var string = "Transposition result of matrix A:\r";
+		for (var i =0; i<this.AxDimension; i++) {
+			for (var j=0; j<this.AyDimension; j++) {
+				string=string+"\t"+this.matrixA[j][i];
+			}
+			string=string+"\r";
+		}
+		this.printOnConsole(string);
+	}
+	
+	calRankA() {
+		this.rebuildMatrix();
+		
+		var rank = this.AxDimension;
+		var row = this.AyDimension;
+		var mat = this.matrixA;
+		
+		for (row = 0; row < rank; row++) { 
+			if (mat[row][row]) { 
+			   for (var col = 0; col < this.AyDimension; col++) { 
+				   if (col != row) { 
+					 var mult = Math.round(mat[col][row] / mat[row][row]*100)/100; 
+					 for (var i = 0; i < rank; i++) 
+					   mat[col][i] -= mult * mat[row][i]; 
+				  } 
+			   } 
+			} 
+			else
+			{ 
+				var reduce = true; 
+				for (var i = row + 1; i < this.AyDimension;  i++) 
+				{ 
+					if (mat[i][row]) 
+					{ 
+						var aux = mat[row];
+						mat[row] = math[i];
+						math[i] = aux;
+						reduce = false; 
+						break; 
+					} 
+				} 
+				if (reduce) 
+				{ 
+					rank--; 
+					for (i = 0; i < this.AyDimension; i++) 
+						mat[i][row] = mat[i][rank]; 
+				} 
+				row--; 
+			} 
+		} 
+		let rankA;
+		if(localStorage.getItem('Rank(A)')===null){
+			rankA=[];
+		}else{
+			rankA=JSON.parse(localStorage.getItem('Rank(A)'));
+		}
+		rankA.push(rank);
+		localStorage.setItem('Rank(A)',JSON.stringify(rankA));
+		this.printOnConsole("Rank of matrix A: "+rank); 		
+	}
+
+	clear(){
+       this.printOnConsole(document.getElementById('console').value = 'Result:');
+
+	}
+    addMatrix() {
+		this.rebuildMatrix();
+		if (this.AxDimension!=this.AyDimension) {
+			this.printOnConsole("Matrices have different dimmensions.");
+			return;
+		}
+		var result = [];
+		for(var i=0; i<3; i++) 
+			result[i]=[];
+		for (i =0; i<this.AyDimension; i++) {
+			for (var j=0; j<this.AxDimension; j++) {
+				result[i][j]=Math.round((parseFloat(this.matrixA[i][j])+parseFloat(this.matrixB[i][j]))*100)/100;
+			}
+		}
+		var string = "Addition result:\r";
+		for (i =0; i<this.AyDimension; i++) {
+			for (var j=0; j<this.AxDimension; j++) {
+				string=string+"\t"+result[i][j];
+			}
+			string=string+"\r";
+		}
+		this.printOnConsole(string);
+	}
+    
+	subtractMatrix() {
+		this.rebuildMatrix();
+		if (this.AxDimension!=this.AyDimension) {
+			this.printOnConsole("Matrices have different dimmensions.");
+			return;
+		}
+		var result = [];
+		for(var i=0; i<3; i++) 
+			result[i]=[];
+		for (i =0; i<this.AyDimension; i++) {
+			for (var j=0; j<this.AxDimension; j++) {
+				result[i][j]=Math.round((parseFloat(this.matrixA[i][j])-parseFloat(this.matrixB[i][j]))*100)/100;
+			}
+		}
+		var string = "Subtraction result:\r";
+		for (i =0; i<this.AyDimension; i++) {
+			for (var j=0; j<this.AxDimension; j++) {
+				string=string+"\t"+result[i][j];
+			}
+			string=string+"\r";
+		}
+		this.printOnConsole(string);
+	}
+	
+	multiplyMatrix() {
+		this.rebuildMatrix();
+		if (this.AxDimension!=this.ByDimension) {
+			this.printOnConsole("Number of columns on A is different from number of rows on B.");
+			return;
+		}
+		var result = [];
+		for(var i=0; i<3; i++) 
+			result[i]=[];
+		i=0;
+		var j=0;
+		var rowsRes = this.AyDimension;
+		var columnsRes = this.BxDimension;
+		
+		for (i=0; i<rowsRes; i++) {
+			for (j=0; j<columnsRes; j++) {
+				result[i][j] = this.matrixA[i][0]*this.matrixB[0][j]+this.matrixA[i][1]*this.matrixB[1][j]+this.matrixA[i][2]*this.matrixB[2][j];
+				result[i][j] = Math.round(result[i][j]*100)/100;
+			}
+		}
+		var string = "Multiplication result:\r";
+		for (i=0; i<rowsRes; i++) {
+			for (j=0; j<columnsRes; j++) {
+				string=string+"\t"+result[i][j];
+			}
+			string=string+"\r";
+		}
+		this.printOnConsole(string);
+	}
+	calDeterminantB() {
+		this.rebuildMatrix();
+		if (this.BxDimension!=this.ByDimension) {
+			this.determinantB=null;
+			this.printOnConsole("Non-square matrix, determinant cannot be calculated.");
+			return;
+		}
+		var determinant;
+		if (this.BxDimension==1) {
+			determinant = this.matrixB[0][0];
+		}
+		if (this.BxDimension==2) {
+			determinant = (this.matrixB[0][0]*this.matrixB[1][1])-(this.matrixB[0][1]*this.matrixB[1][0]);
+		}
+		if (this.BxDimension==3) {
+			var op1, op2, op3, r1, r2, r3;
+			op1 = this.matrixB[0][0]*this.matrixB[1][1]*this.matrixB[2][2];
+			op2 = this.matrixB[0][1]*this.matrixB[1][2]*this.matrixB[2][0];
+			op3 = this.matrixB[0][2]*this.matrixB[1][0]*this.matrixB[2][1];
+			r1 = this.matrixB[0][2]*this.matrixB[1][1]*this.matrixB[2][0];
+			r2 = this.matrixB[0][0]*this.matrixB[1][2]*this.matrixB[2][1];
+			r3 = this.matrixB[0][1]*this.matrixB[1][0]*this.matrixB[2][2];
+			determinant = Math.round((op1+op2+op3-r1-r2-r3)*100)/100;
+		}
+		this.determinantB = determinant;
+		let det;
+		if(localStorage.getItem('Determinant(B)')===null){
+			det=[];
+		}else{
+			det=JSON.parse(localStorage.getItem('Determinant(B)'));
+		}
+		det.push(determinant);
+		localStorage.setItem('Determinant(B)',JSON.stringify(det));
+		this.printOnConsole("Determinant of matrix B: "+determinant)
+		return;
+	}
+
+    transposeMatrixB() {
+		this.rebuildMatrix();
+		var string = "Transposition result of matrix B:\r";
+		for (var i =0; i<this.BxDimension; i++) {
+			for (var j=0; j<this.ByDimension; j++) {
+				string=string+"\t"+this.matrixB[j][i];
+			}
+			string=string+"\r";
+		}
+		this.printOnConsole(string);
+	}
+	calRankB() {
+		this.rebuildMatrix();
+		
+		var rank = this.BxDimension;
+		var row = this.ByDimension;
+		var mat = this.matrixB;
+		
+		for (row = 0; row < rank; row++) { 
+			if (mat[row][row]) { 
+			   for (var col = 0; col < this.ByDimension; col++) { 
+				   if (col != row) { 
+					 var mult = Math.round(mat[col][row] / mat[row][row]*100)/100; 
+					 for (var i = 0; i < rank; i++) 
+					   mat[col][i] -= mult * mat[row][i]; 
+				  } 
+			   } 
+			} 
+			else
+			{ 
+				var reduce = true; 
+				for (var i = row + 1; i < this.ByDimension;  i++) 
+				{ 
+					if (mat[i][row]) 
+					{ 
+						var aux = mat[row];
+						mat[row] = math[i];
+						math[i] = aux;
+						reduce = false; 
+						break; 
+					} 
+				} 
+				if (reduce) 
+				{ 
+					rank--; 
+					for (i = 0; i < this.ByDimension; i++) 
+						mat[i][row] = mat[i][rank]; 
+				} 
+				row--; 
+			} 
+		} 
+		let rankB;
+		if(localStorage.getItem('Rank(B)')===null){
+			rankB=[];
+		}else{
+			rankB=JSON.parse(localStorage.getItem('Rank(B)'));
+		}
+		rankB.push(rank);
+		localStorage.setItem('Rank(B)',JSON.stringify(rankB));
+		this.printOnConsole("Rank of matrix B: "+rank); 		
+	}
+	printOnConsole(val) {
+		document.getElementById("console").value = val;
+	}
+}
+var mc = new MatrixCalculator();
+  </script>
+</body>
+</html>
